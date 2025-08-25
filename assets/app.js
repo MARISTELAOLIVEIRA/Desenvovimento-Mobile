@@ -10,17 +10,36 @@ ready(() => {
   hydrateProgress();
 });
 
-function wireRunners(){
+function wireRunners() {
   document.querySelectorAll('[data-runner]').forEach(el => {
     const ta = el.querySelector('textarea');
     const btn = el.querySelector('button[data-run]');
     const out = el.querySelector('.output');
     btn.addEventListener('click', () => {
       out.textContent = '';
-      try{
-        const result = Function('"use strict";\n' + ta.value)();
-        if(result !== undefined) out.textContent = String(result);
-      }catch(e){
+      try {
+        let result = Function('"use strict";\n' + ta.value)();
+        if (result === undefined) {
+          const lines = ta.value.trim().split(/\n/).filter(l => l.trim() !== '');
+          const last = lines[lines.length - 1];
+          if (
+            last &&
+            !/^(return|const|let|var|for\b|while\b|if\b|class\b|function\b|async\b|await\b)/.test(
+              last.trim()
+            )
+          ) {
+            try {
+              result = Function('"use strict";\nreturn ( ' + last + ' )')();
+            } catch (_e) {}
+          }
+        }
+        if (result !== undefined) {
+          out.textContent = String(result);
+        } else {
+          out.textContent =
+            'Executado. (Sem retorno) — use return ou deixe uma expressão final.';
+        }
+      } catch (e) {
         out.textContent = e && e.stack ? e.stack : String(e);
       }
     });
