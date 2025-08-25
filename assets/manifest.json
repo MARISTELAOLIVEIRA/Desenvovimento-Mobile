@@ -1,9 +1,13 @@
 {
   "name": "Desenvolvimento Mobile (JS)",
-  "short_name": "Mobile",
+  "short_name": "UC Mobile",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b0f0d",
   "theme_color": "#2dbd6e",
-  "icons": []
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
+  ]
 }
