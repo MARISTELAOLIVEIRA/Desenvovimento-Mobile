@@ -1,0 +1,38 @@
+
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/style.css"><title>01. Introdução a JavaScript para Mobile</title></head>
+<body class="container">
+<article class="card">
+<h1>01. Introdução a JavaScript para Mobile</h1>
+<p>Vamos alinhar a base de JavaScript pensando em apps móveis. Semelhanças para quem vem de Python:</p>
+<ul>
+<li>Variáveis (<code>let</code>, <code>const</code>) e tipos dinâmicos</li>
+<li>Funções (declaração e arrow)</li>
+<li>Arrays, objetos e JSON</li>
+<li>DOM, eventos e <code>fetch</code> para chamadas HTTP</li>
+</ul>
+<h2>Exemplo prático</h2>
+<pre><code>// Somatório simples
+function soma(a,b){ return a+b }
+console.log(soma(2,3))</code></pre>
+<div class="runner card" data-runner>
+<label>Teste você:</label>
+<textarea>// retorne algo no final para exibir aqui
+const dobro = n => n*2;
+dobro(21);</textarea>
+<button class="button" data-run>Executar</button>
+<div class="output"></div>
+</div>
+<h2>Quiz rápido</h2>
+<div class="quiz" data-quiz data-key="q1-intro" data-answer="b">
+  <div class="q">Qual é a forma recomendada de declarar variáveis que <em>não</em> mudarão?</div>
+  <label class="option" data-value="a"><code>var</code></label>
+  <label class="option" data-value="b"><code>const</code></label>
+  <label class="option" data-value="c"><code>let</code></label>
+  <div data-result></div>
+</div>
+<p><a class="button" href="/lessons/02-ui-responsiva.html">Próxima: UI Responsiva →</a></p>
+</article>
+<script src="/assets/app.js"></script>
+</body></html>

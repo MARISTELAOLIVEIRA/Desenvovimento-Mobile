@@ -1,0 +1,29 @@
+
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/style.css"><title>04. Web APIs</title></head>
+<body class="container">
+<article class="card">
+<h1>04. Web APIs de Dispositivo</h1>
+<p>Use recursos do dispositivo via navegador (quando suportado):</p>
+<ul>
+<li>Câmera: <code>getUserMedia</code></li>
+<li>Geolocalização: <code>navigator.geolocation</code></li>
+<li>Vibração: <code>navigator.vibrate</code></li>
+<li>Clipboard, Orientação, Battery, etc.</li>
+</ul>
+<pre><code>// Exemplo: geolocalização
+navigator.geolocation.getCurrentPosition(pos => {
+  console.log(pos.coords.latitude, pos.coords.longitude);
+});</code></pre>
+<div class="quiz" data-quiz data-key="q4-webapis" data-answer="a">
+  <div class="q">Qual API acessa a câmera no navegador?</div>
+  <label class="option" data-value="a"><code>getUserMedia</code></label>
+  <label class="option" data-value="b"><code>MediaPipe</code></label>
+  <label class="option" data-value="c"><code>Bluetooth.request</code></label>
+  <div data-result></div>
+</div>
+<p><a class="button" href="/lessons/05-expo-snack.html">Próxima: Expo sem Android Studio →</a></p>
+</article>
+<script src="/assets/app.js"></script>
+</body></html>

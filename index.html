@@ -1,0 +1,99 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2dbd6e">
+  <link rel="manifest" href="/assets/manifest.json">
+  <link rel="stylesheet" href="/assets/style.css">
+  <title>Desenvolvimento Mobile (JavaScript) — Prof. Maristela</title>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 12h4l2-3 4 6 3-4h5" stroke="#2dbd6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="8" r="2" stroke="#7fe3b1" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="title">UC Desenvolvimento Mobile (JS)</div>
+          <div class="badge">SENAC DF • 140h • 5x/semana • 4h/aula</div>
+        </div>
+      </div>
+      <div id="progress-pill" class="badge">0 / 0 quizzes concluídos</div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card hero">
+      <div>
+        <h1>Mobile first com <span style="color: var(--accent)">JavaScript</span>: do Web App ao PWA e Expo</h1>
+        <p>Nesta unidade, você vai construir apps móveis sem depender do Android Studio. Começamos com fundamentos de JavaScript, avançamos para apps web responsivos e transformamos em <strong>PWA</strong>. Depois, exploramos <strong>Expo</strong> (via <span class="kbd">Expo Go</span> e <span class="kbd">Snack</span>) para acessar recursos nativos quando necessário.</p>
+        <div class="cta">
+          <a class="button" href="/lessons/01-intro-js.html">Começar agora</a>
+          <a class="button secondary" href="/README.html">Guia da Professora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-title">Plano de 8 semanas (exemplo)</div>
+        <ol>
+          <li><strong>JS Essentials para Mobile</strong>: Sintaxe, DOM, eventos, fetch</li>
+          <li><strong>UI Responsiva</strong>: Grid/Flex, componentes, acessibilidade</li>
+          <li><strong>Estado & Armazenamento</strong>: localStorage, padrões simples</li>
+          <li><strong>PWA</strong>: manifest, service worker, offline & install</li>
+          <li><strong>APIs de Dispositivo (Web)</strong>: câmera, geolocalização, vibração</li>
+          <li><strong>Expo (Snack & Expo Go)</strong>: sem Android Studio</li>
+          <li><strong>Integração com API</strong>: REST, autenticação básica</li>
+          <li><strong>Projeto Final</strong>: PWA ou App Expo</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="grid" style="grid-template-columns: repeat(12, 1fr)">
+      <div class="card" style="grid-column: span 8">
+        <div class="section-title">Trilhas & Materiais</div>
+        <div class="list">
+          <a href="/lessons/01-intro-js.html">01. Introdução a JavaScript para Mobile</a>
+          <a href="/lessons/02-ui-responsiva.html">02. UI Responsiva: Grid, Flex, componentes</a>
+          <a href="/lessons/03-pwa-basics.html">03. PWA: manifest, service worker & offline</a>
+          <a href="/lessons/04-web-apis.html">04. Web APIs de Dispositivo (Câmera, Geo, etc.)</a>
+          <a href="/lessons/05-expo-snack.html">05. Expo sem Android Studio (Snack & Expo Go)</a>
+          <a href="/lessons/06-projeto-final.html">06. Projeto Final: PWA ou Expo</a>
+        </div>
+      </div>
+      <div class="card" style="grid-column: span 4">
+        <div class="section-title">Entregas (GitHub Classroom)</div>
+        <ul>
+          <li>Checkpoint 1: <a href="/assignments/checkpoint-1.html">JS Básico + DOM</a></li>
+          <li>Checkpoint 2: <a href="/assignments/checkpoint-2.html">UI Responsiva</a></li>
+          <li>Checkpoint 3: <a href="/assignments/checkpoint-3.html">PWA Offline</a></li>
+          <li>Projeto Final: <a href="/assignments/projeto-final.html">App Mobile</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Laboratório Rápido (executa JS no navegador)</div>
+      <div class="runner" data-runner>
+        <label>Digite seu código JS:</label>
+        <textarea>// Exemplo: retorne algo do seu script
+const x = [1,2,3].map(n => n*2);
+'Olá! Resultado: ' + x.join(', ')</textarea>
+        <button class="button" data-run>Executar</button>
+        <div class="output" aria-live="polite"></div>
+      </div>
+      <small>Dica: No curso usaremos também ambientes online (Codespaces, Replit, Snack) para padronizar a prática sem depender de máquina potente.</small>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2025 • Prof. Maristela • Circuito Verde / StarsTech
+  </footer>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>
