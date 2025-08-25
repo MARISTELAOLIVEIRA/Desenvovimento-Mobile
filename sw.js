@@ -1,7 +1,7 @@
 
 self.addEventListener('install', evt => {
   evt.waitUntil(caches.open('uc-mobile-v1').then(c => c.addAll([
-    '/', '/assets/style.css', '/assets/app.js', '/assets/manifest.json'
+    '.', 'assets/style.css', 'assets/app.js', 'assets/manifest.json'
   ])));
 });
 self.addEventListener('fetch', evt => {
