@@ -72,6 +72,6 @@ function renderProgress(progress){
 
 async function registerSW(){
   if('serviceWorker' in navigator){
-    try{ await navigator.serviceWorker.register('/sw.js') } catch(e){}
+    try{ await navigator.serviceWorker.register('sw.js') } catch(e){}
   }
 }
