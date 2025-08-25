@@ -1,0 +1,14 @@
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offline</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="container">
+<article class="card">
+ <h1>Você está offline</h1>
+ <p>O conteúdo principal já visitado pode continuar acessível. Assim que a conexão voltar esta página recarrega.</p>
+ <p><button class="button" onclick="location.reload()">Tentar novamente</button></p>
+ <p><a class="button secondary" href="index.html">Ir para Início</a></p>
+</article>
+<script>setInterval(()=>{ navigator.onLine && location.replace('index.html'); }, 4000);</script>
+</body></html>

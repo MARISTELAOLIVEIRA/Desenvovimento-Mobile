@@ -1,5 +1,7 @@
 
+// SW consolidado pós-merge
 const CACHE = 'mobile-v6';
+// Usar caminhos relativos para funcionar tanto em root quanto em GitHub Pages (project site)
 const PRECACHE = [
   'index.html',
   'assets/style.css',
@@ -28,11 +30,14 @@ self.addEventListener('install', evt => {
     caches.open(CACHE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting())
   );
 });
+
 self.addEventListener('activate', evt => {
   evt.waitUntil(
     caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
   );
 });
+
+// Estratégia: cache-first para assets precache; network-first para navegação
 self.addEventListener('fetch', evt => {
   const req = evt.request;
   if(req.mode === 'navigate'){

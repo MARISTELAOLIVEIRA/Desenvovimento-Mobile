@@ -5,9 +5,9 @@ function ready(fn){ if(document.readyState!='loading'){ fn() } else { document.a
 
 ready(() => {
   registerSW();
-  hydrateProgress();
   wireRunners();
   wireQuizzes();
+  hydrateProgress();
 });
 
 function wireRunners(){
@@ -59,19 +59,33 @@ function saveProgress(key, passed){
 }
 
 function hydrateProgress(){
+  // Carrega progresso salvo e re-renderiza baseando-se no total real de quizzes na página
   renderProgress(JSON.parse(localStorage.getItem('progress') || '{}'));
 }
 
 function renderProgress(progress){
   const pill = document.querySelector('#progress-pill');
   if(!pill) return;
-  const total = Object.keys(progress).length;
-  const passed = Object.values(progress).filter(x => x.passed).length;
+  const allQuizzes = document.querySelectorAll('[data-quiz]');
+  const total = allQuizzes.length;
+  const passed = Object.entries(progress).filter(([k,v]) => v && v.passed).length;
   pill.textContent = passed + ' / ' + total + ' quizzes concluídos';
+  if(!document.querySelector('#reset-progress') && pill){
+    const btn = document.createElement('button');
+    btn.id = 'reset-progress';
+    btn.className = 'button secondary';
+    btn.style.marginLeft = '8px';
+    btn.textContent = 'Reset';
+    btn.addEventListener('click', () => { if(confirm('Resetar progresso?')){ localStorage.removeItem('progress'); hydrateProgress(); } });
+    pill.insertAdjacentElement('afterend', btn);
+  }
 }
 
 async function registerSW(){
-  if('serviceWorker' in navigator){
-    try{ await navigator.serviceWorker.register('sw.js') } catch(e){}
-  }
+  if(!('serviceWorker' in navigator)) return;
+  // Ajusta caminho do sw quando página está em subpasta (lessons/ ou assignments/)
+  const path = location.pathname;
+  let swPath = 'sw.js';
+  if(/\/(lessons|assignments)\//.test(path)) swPath = '../sw.js';
+  try{ await navigator.serviceWorker.register(swPath); }catch(e){}
 }

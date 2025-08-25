@@ -1,0 +1,62 @@
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PWA Debug</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="container">
+<article class="card">
+ <h1>Diagnóstico PWA</h1>
+ <p>Use esta página para verificar se o Service Worker e o Manifest estão ativos.</p>
+ <ul>
+  <li><strong>SW registrado:</strong> <span id="sw-status">...</span></li>
+  <li><strong>Versão do cache ativo:</strong> <span id="cache-version">...</span></li>
+  <li><strong>Arquivos no cache:</strong></li>
+ </ul>
+ <pre id="cache-files" style="max-height:260px;overflow:auto"></pre>
+ <h2>Display Mode</h2>
+ <p id="display-mode"></p>
+ <button class="button" id="btn-clear-caches">Limpar caches</button>
+ <button class="button secondary" id="btn-reset-progress">Resetar progresso quizzes</button>
+ <p><a class="button" href="index.html">← Voltar</a></p>
+</article>
+<script>
+(async function(){
+  const swStatusEl = document.getElementById('sw-status');
+  const cacheVersionEl = document.getElementById('cache-version');
+  const cacheFilesEl = document.getElementById('cache-files');
+  if('serviceWorker' in navigator){
+    const reg = await navigator.serviceWorker.getRegistration('../sw.js') || await navigator.serviceWorker.getRegistration('sw.js') || await navigator.serviceWorker.getRegistration();
+    if(reg){
+      swStatusEl.textContent = 'OK';
+      // tenta comunicar versão do cache via mensagem
+    }else{
+      swStatusEl.textContent = 'não registrado';
+    }
+  }else{
+    swStatusEl.textContent = 'não suportado';
+  }
+  // Lista caches
+  if('caches' in window){
+    const names = await caches.keys();
+    if(names.length){
+      cacheVersionEl.textContent = names.join(', ');
+      const entries = [];
+      for(const n of names){
+        const c = await caches.open(n);
+        const reqs = await c.keys();
+        reqs.forEach(r => entries.push(r.url));
+      }
+      cacheFilesEl.textContent = entries.sort().join('\n');
+    }
+  }
+  const dm = window.matchMedia('(display-mode: standalone)').matches ? 'standalone' : (navigator.standalone ? 'standalone (iOS)' : 'browser');
+  document.getElementById('display-mode').textContent = dm;
+  document.getElementById('btn-clear-caches').onclick = async () => {
+    const names = await caches.keys();
+    await Promise.all(names.map(n => caches.delete(n)));
+    location.reload();
+  };
+  document.getElementById('btn-reset-progress').onclick = () => { localStorage.removeItem('progress'); alert('Progresso limpo'); };
+})();
+</script>
+</body></html>
